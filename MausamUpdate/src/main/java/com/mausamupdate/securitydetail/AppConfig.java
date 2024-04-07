@@ -43,6 +43,7 @@ public class AppConfig {
 			});
 		}) .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST , "/admin/register").permitAll()
 				.requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
+				.requestMatchers("/weather/updateByCity/{city}").hasAnyRole("ADMIN","USER")
 				.requestMatchers("/admin/logini").hasAnyRole("ADMIN" , "USER")
 				.anyRequest().authenticated())
 				.csrf(csrf -> csrf.disable())
